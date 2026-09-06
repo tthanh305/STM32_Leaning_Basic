@@ -18,6 +18,6 @@ int main(void) {
 
     while (1) {
         GPIOC->ODR ^= (1 << 13); // Toggle PC13
-        delay_ms(100);
+        delay_ms(1000);
     }
 }
