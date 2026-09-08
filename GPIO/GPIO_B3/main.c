@@ -1,37 +1,63 @@
-#include <stm32f10x.h>
+/*Cấu hình PA0-PA7 ở chế độ Input, PB8-PB15 ở chế độ Output.
+Viết chương trình đọc dữ liệu từ PA0-PA7 sau đó đảo dữ liệu (Từ 0 thành 1, từ 1 thành
+0), rồi ghi vào LED tại PB8-PB15*/
 
-void delay_ms(uint32_t ms) {
-    for (volatile uint32_t i = 0; i < ms; i++) {
-        for (volatile uint32_t j = 0; j < 800; j++) {
-            __asm__("nop");
-        }
-    }
-}
+#include <stdint.h>
 
-int main(void) {
-    RCC->APB2ENR |= (1 << 2); // Bật clock cho GPIOA (bit 2)
+#define RCC_BASE    0x40021000UL
+#define GPIOA_BASE  0x40010800UL
+#define GPIOB_BASE  0x40010C00UL
 
-    /* Cấu hình PA0-PA7 làm output push-pull, 2MHz
-     * CRL quản lý PA0-PA7, mỗi chân chiếm 4 bit (MODE + CNF)
-     * MODE=10 (output 2MHz), CNF=00 (push-pull) -> mỗi chân = 0x2
-     * 8 chân x 4 bit = toàn bộ 32 bit của CRL -> 0x22222222 */
-    GPIOA->CRL = 0x22222222;
+typedef struct
+{
+    volatile uint32_t CR;
+    volatile uint32_t CFGR;
+    volatile uint32_t CIR;
+    volatile uint32_t APB2RSTR;
+    volatile uint32_t APB1RSTR;
+    volatile uint32_t AHBENR;
+    volatile uint32_t APB2ENR;
+    volatile uint32_t APB1ENR;
+    volatile uint32_t BDCR;
+    volatile uint32_t CSR;
+} RCC_TypeDef;
 
-    uint8_t pos = 0;      // vị trí LED đang sáng (0-7)
-    int8_t direction = 1; // 1: chạy sang phải, -1: chạy sang trái
+typedef struct
+{
+    volatile uint32_t CRL;
+    volatile uint32_t CRH;
+    volatile uint32_t IDR;
+    volatile uint32_t ODR;
+    volatile uint32_t BSRR;
+    volatile uint32_t BRR;
+    volatile uint32_t LCKR;
+} GPIO_TypeDef;
 
-    while (1) {
-        GPIOA->BSRR = (1 << pos) | (0xFF & ~(1 << pos))<<16;
+#define RCC   ((RCC_TypeDef *)RCC_BASE)
+#define GPIOA ((GPIO_TypeDef *)GPIOA_BASE)
+#define GPIOB ((GPIO_TypeDef *)GPIOB_BASE)
 
-        pos += direction;
+int main(void)
+{
+    // Bat clock GPIOA va GPIOB
+    RCC->APB2ENR |= (1 << 2) | (1 << 3);
 
-        // Đảo chiều khi chạm 2 đầu
-        if (pos == 7) {
-            direction = -1;
-        } else if (pos == 0) {
-            direction = 1;
-        }
+    // PA0-PA7: input pull-up
+    GPIOA->CRL = 0x88888888;
+    GPIOA->ODR |= 0x00FF;
 
-        delay_ms(100);
+    // PB8-PB15: output push-pull 2MHz
+    GPIOB->CRH = 0x22222222;
+
+    while (1)
+    {
+        uint8_t input;
+        uint8_t output;
+
+        input = GPIOA->IDR & 0xFF;
+
+        output = (~input) & 0xFF;
+
+        GPIOB->ODR = (GPIOB->ODR & 0x00FF) | ((uint32_t)output << 8);
     }
 }
