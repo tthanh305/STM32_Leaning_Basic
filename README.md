@@ -1,4 +1,4 @@
-#  STM32F103 – Thực hành cơ bản
+# STM32F103 – Thực hành cơ bản
 
 Repository lưu lại quá trình học và thực hành STM32F103 theo từng buổi.
 
@@ -8,12 +8,12 @@ Repository lưu lại quá trình học và thực hành STM32F103 theo từng b
 
 Các bài thực hành cơ bản về GPIO trên STM32F103.
 
-| Bài | Video |
-|---|---|
+| Bài             | Video                                                     |
+| --------------- | --------------------------------------------------------- |
 | 🔹 GPIO – Bài 1 | [▶ Xem video](https://www.youtube.com/shorts/P_1-098pT9s) |
 | 🔹 GPIO – Bài 2 | [▶ Xem video](https://www.youtube.com/shorts/NlQ6ZXGxPqc) |
-| 🔹 GPIO – Bài 3 | [▶ Xem video](https://youtu.be/i1oH9NjmevE) |
-| 🔹 GPIO – Bài 4 | [▶ Xem video](https://youtu.be/uyu_XjTQu9s) |
+| 🔹 GPIO – Bài 3 | [▶ Xem video](https://youtu.be/i1oH9NjmevE)               |
+| 🔹 GPIO – Bài 4 | [▶ Xem video](https://youtu.be/uyu_XjTQu9s)               |
 
 ---
 
@@ -21,8 +21,8 @@ Các bài thực hành cơ bản về GPIO trên STM32F103.
 
 Các bài thực hành giao tiếp UART và Timer trên STM32F103.
 
-| Bài | Video |
-|---|---|
+| Bài                     | Video                                       |
+| ----------------------- | ------------------------------------------- |
 | 🔹 UART + Timer – Bài 1 | [▶ Xem video](https://youtu.be/EMP7NJXs7Ak) |
 | 🔹 UART + Timer – Bài 2 | [▶ Xem video](https://youtu.be/S21s9wM-gaU) |
 | 🔹 UART + Timer – Bài 3 | [▶ Xem video](https://youtu.be/iSlyoTtlAYg) |
@@ -31,23 +31,36 @@ Các bài thực hành giao tiếp UART và Timer trên STM32F103.
 
 ---
 
+## Buổi 3
+
+Các bài thực hành STM32F103 trong Buổi 3.
+
+| Bài               | Video                                                           |
+| ----------------- | --------------------------------------------------------------- |
+| 🔹 Buổi 3 – Bài 1 | [▶ Xem video](https://youtu.be/rf0giMZUOuU?si=wlMSWeMo1me7z7ri) |
+| 🔹 Buổi 3 – Bài 2 | [▶ Xem video](https://youtu.be/QLk61L6UvBo?si=qHaLmiC-jn4Fefl9) |
+| 🔹 Buổi 3 – Bài 3 | [▶ Xem video](https://youtu.be/6ryLP4C8KlU?si=Ymv78z3mrN28ctT9) |
+| 🔹 Buổi 3 – Bài 4 | [▶ Xem video](https://youtu.be/VzRieuGUbaU?si=I3u5HsTmUwcK80Rk) |
+
+---
+
 ## Nội dung repository
 
-| Thư mục | Nội dung |
-|---|---|
-| `GPIO/` | Các bài thực hành GPIO |
-| `B2_UART_Timer/` | Các bài thực hành UART + Timer |
-| `CMSIS/` | Thư viện CMSIS phục vụ biên dịch |
+| Thư mục          | Nội dung                         |
+| ---------------- | -------------------------------- |
+| `GPIO/`          | Các bài thực hành GPIO           |
+| `B2_UART_Timer/` | Các bài thực hành UART + Timer   |
+| `CMSIS/`         | Thư viện CMSIS phục vụ biên dịch |
 
 ---
 
 ## Môi trường
 
-- **MCU:** STM32F103C8T6
-- **Ngôn ngữ:** C
-- **Compiler:** ARM GCC
-- **Thư viện:** CMSIS / STM32 Standard Peripheral Library
-- **Hệ điều hành:** Linux
+* **MCU:** STM32F103C8T6
+* **Ngôn ngữ:** C
+* **Compiler:** ARM GCC
+* **Thư viện:** CMSIS / STM32 Standard Peripheral Library
+* **Hệ điều hành:** Linux
 
 ---
 
